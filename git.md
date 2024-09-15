@@ -4,9 +4,9 @@
 2. tree <檔案夾名稱> 可以看見該檔案夾以下所有的子檔案夾互相的關係
 3. commit: 表示一次提交，記錄了一次對儲存庫的更改。
 
-#### 觀察
+## 觀察
 先新增一個檔案 **git-practice**，然後執行`git init`，確定檔案多了一個 `.git`，之後針對執行各種git指令後，以tree指令觀察 `.git`的檔案變化
-#### 執行 `git init` 之後
+### 執行 `git init` 之後
 ```
 .git
 ├── HEAD
@@ -39,7 +39,7 @@
 1. HEAD: 指向本地分支的的最新commit（但如果協作的情況下又太久沒pull，本地分支及遠端分支的最新commit會衝突）
 2. 在 `.git` 目錄結構中，blob 物件是儲存在 `objects` 目錄下。
 
-#### git add 之後
+### 執行 `git add` 之後
 ```
 .git
 ├── HEAD
@@ -82,7 +82,7 @@
 1. index: 儲存即將被提交的變更的狀態及內容
 2. 2d, 44, e2, e6是新增的資料夾，而底下的檔案是`git add`之後所新增的blob  
 
-#### git commit之後
+### 執行 `git commit` 之後
 ```
 .git
 ├── COMMIT_EDITMSG   #新增
@@ -142,8 +142,8 @@
    - 每次提交變更時，如果檔案內容發生了變化，Git 會生成新的 `blob` 物件來儲存這些變更。即使檔案內容僅有微小變化，每次變更都會生成一個新的 `blob`。
 4. refs/heads/master：這個檔案指向 master 分支的最新提交。當提交新變更時，這個檔案會被更新，以指向新的提交。（推上遠端repo之前會先改成`main`）
 
-#### git push 之後
-在github上開心的branch 之後，執行`git push`
+### 執行 `git push` 之後
+在github上開新的branch 之後，執行`git push`
 ```
 .git
 ├── COMMIT_EDITMSG
@@ -199,10 +199,11 @@
     │       └── main   #新增
     └── tags
 ```
-1. refs 及 logs 在接上github的遠端repo之後，都新增了remotes的部分
+refs 及 logs 在接上github的遠端repo之後，都新增了remotes的部分
 
-#### git branch test
-branch: 在分支上的開發動作都不會影響到main的程式碼，很適合共同開發時使用  
+### git branch test
+branch: 在分支上的開發動作都不會影響到main的程式碼，很適合共同開發時使用。
+    
 執行`git branch test`，然後查看tree
 ```
 ├── logs
@@ -240,7 +241,7 @@ branch: 在分支上的開發動作都不會影響到main的程式碼，很適�
 ```
 發現在logs, refs都新增了test指向test這個branch
 
-#### 將 branch test push到遠端
+### 將 branch test push到遠端
 ```
 ├── logs
 │   ├── HEAD
@@ -284,6 +285,19 @@ branch: 在分支上的開發動作都不會影響到main的程式碼，很適�
     └── tags
 ```
 同樣的在logs and refs的remote都新增了test
+
+### git merge test to main
+```
+.git
+├── COMMIT_EDITMSG
+├── HEAD
+├── ORIG_HEAD   #新增
+├── config
+├── description
+├── hooks
+```
+ORIG_HEAD 是 git 用來保存合併之前 HEAD 狀態的檔案，對於之後後悔想要回退、恢復時很有幫助。
+
 
 # commit message 應該怎麼寫？
 主要是要讓自己及他人能夠一目瞭然這次的commit針對哪個部分做了什麼樣的改動，以方便版本回溯等。  
