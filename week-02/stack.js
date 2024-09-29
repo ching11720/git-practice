@@ -1,7 +1,7 @@
 // stack.js
 // 完成以下 TODO 的部分，並且以 Module 的方式匯出 (ESM)
 export default class Stack {
-    // TODO: # 有特別的意思嗎？請以註解回覆。
+	// TODO: # 有特別的意思嗎？請以註解回覆。
     // 在js裡面，#代表物件中的private變數，意思就是這個變數只能在這個物件中內部使用，其他import這個物件的程式無法改動。
     #items;
 
@@ -34,7 +34,7 @@ export default class Stack {
         return this.#items.length;
     }
 
-    // 清空 stack
+    // 清空 stack 
     clear() {
         this.#items.splice(0, this.#items.length);
     }
