@@ -1,6 +1,6 @@
-## AWS EC2 服務
+# AWS EC2 服務
 
-### Launch a new instance
+## Launch a new instance
 
 -   OS: 選擇虛擬機的作業系統
 -   instance type: 虛擬機的 CPU，越大越大越貴
@@ -9,7 +9,7 @@
     -   建議只要建立最少數量的 security group，避免出錯。
     -   避免 port 設定範圍過大，或直接設定 0.0.0.0/0，這樣防火牆也就沒意義了（因為任何人都能連線）
 
-### Nginx
+## Nginx
 
 有點像是一個 server，介在 client 跟後端伺服器之間，當後端有多台伺服器在服務時，Nginx 可以去分配每個伺服器的負載量，也可以讓 client 在進行加密傳輸時更方便（只需要讓 Nginx 去做加密就好）。
 
@@ -41,7 +41,7 @@ server {
 
 裡面會有連線用戶的 IP，時間以及連線方式、狀態（像這裡就是單純 get hello world，然後 200 代表成功）
 
-### pm2
+## pm2
 
 管理 NodeJS process 的工具，用以最大化使用 CPU。  
 `pm2 start app.js`
@@ -50,7 +50,7 @@ server {
 
 下了這個指令，直接開啟最高管理員的權限。像是安裝軟體的時候就可能遇到 permission denied 之類的問題，這時候就要下 sudo 處理。
 
-### 遭遇的問題
+## 遭遇的問題
 
 無
 
