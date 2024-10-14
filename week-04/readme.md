@@ -60,5 +60,6 @@ server {
 -   https://aws.amazon.com/tw/ec2/instance-types/ (AWS instance 官網介紹)
 -   https://docs.aws.amazon.com/zh_tw/vpc/latest/userguide/vpc-security-groups.html (security group)
 -   https://www.youtube.com/watch?v=7VAI73roXaY (Nginx 介紹影片)
+-   https://www.pressplay.cc/project/F720CEB1D6057D7ABB5614722AB18FFF/articles/660A57208C29FF94453548ED21F284EF (proxy)
 -   https://medium.com/@yunandarpalilati/monitoring-access-log-and-error-log-in-nginx-d5ea089dd7b0 (nginx log)
 -   https://ithelp.ithome.com.tw/m/articles/10214173 (pm2)
