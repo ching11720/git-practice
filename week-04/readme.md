@@ -13,26 +13,38 @@
 
 有點像是一個 server，介在 client 跟後端伺服器之間，當後端有多台伺服器在服務時，Nginx 可以去分配每個伺服器的負載量，也可以讓 client 在進行加密傳輸時更方便（只需要讓 Nginx 去做加密就好）。
 
--   proxy: 透過中介去傳遞訊息，就像上面提到的 Nginx 功能，他可以讓後端 server 跟 client 之間的互動更順利（分配負載量、加密等）
--   setting file:
+#### proxy
+
+透過中介去傳遞訊息，就像上面提到的 Nginx 功能，他可以讓後端 server 跟 client 之間的互動更順利（分配負載量、加密等）
+
+#### setting file
 
 ```
 server {
   listen 80;
   server_name git-practice.com;
   location / {
-    proxy_pass http://13.236.86.88/80;
+    proxy_pass http://localhost:3000;
     proxy_http_version 1.1;
     proxy_set_header Host $host;
   }
 }
 ```
 
--   log:
+#### log
+
+在 `/var/log/nginx` 中找到的，根據下面那篇文章
+
+```
+140.119.96.81 - - [14/Oct/2024:15:53:57 +0000] "GET / HTTP/1.1" 200 12 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15"
+```
+
+裡面會有連線用戶的 IP，時間以及連線方式、狀態（像這裡就是單純 get hello world，然後 200 代表成功）
 
 ### pm2
 
-管理 NodeJS process 的工具，用以最大化使用 CPU。
+管理 NodeJS process 的工具，用以最大化使用 CPU。  
+`pm2 start app.js`
 
 ### sudo
 
@@ -48,4 +60,5 @@ server {
 -   https://aws.amazon.com/tw/ec2/instance-types/ (AWS instance 官網介紹)
 -   https://docs.aws.amazon.com/zh_tw/vpc/latest/userguide/vpc-security-groups.html (security group)
 -   https://www.youtube.com/watch?v=7VAI73roXaY (Nginx 介紹影片)
+-   https://medium.com/@yunandarpalilati/monitoring-access-log-and-error-log-in-nginx-d5ea089dd7b0 (nginx log)
 -   https://ithelp.ithome.com.tw/m/articles/10214173 (pm2)
