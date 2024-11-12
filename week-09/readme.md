@@ -73,3 +73,7 @@
     ` sudo iptables -D INPUT 1`  
     ![image](https://github.com/ching11720/git-practice/blob/main/week-09-graph/防火牆/截圖%202024-11-07%20下午3.20.01.png)
     -   這裡有多加入 accept 所有 tcp 請求在 input 跟 output 的地方，但因為是加在 reject 後面，所以在執行 accept 之前就已經被 reject 了。
+
+# 心得
+
+很喜歡這樣的作業！除了可以向老師、同學們學到各種關於網站架設的細節（尤其是 iptable 的部分，如果沒有好心人給的提示真的完全不會知道），真正解決問題之後又能得到成就感！
