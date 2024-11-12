@@ -77,3 +77,54 @@
 # 心得
 
 很喜歡這樣的作業！除了可以向老師、同學們學到各種關於網站架設的細節（尤其是 iptable 的部分，如果沒有好心人給的提示真的完全不會知道），真正解決問題之後又能得到成就感！
+
+# bonus
+
+rebooting server 之後，發現防火牆及 80 port 的問題又會跑出來。另外還有硬碟空間的問題。
+
+### 硬碟空間
+
+其實在做上面的 vim 修改時，會遇到`Can't open file for writing`  
+![image](https://github.com/ching11720/git-practice/blob/main/week-09-graph/bonus/disk/root不能修改檔案.png)  
+查了資料才知道原來是硬碟空間已滿，所以無法存取我修改的資料（swap 空間，待補）  
+`df -h`  
+![image](https://github.com/ching11720/git-practice/blob/main/week-09-graph/bonus/disk/disk用量.png)
+
+-   檢查各檔案所佔的硬碟空間
+    -   從 root 開始  
+        `sudo du -h / --max-depth=1`  
+        ![image](https://github.com/ching11720/git-practice/blob/main/week-09-graph/bonus/disk/根目錄硬碟空間.png)
+    -   /var 有問題  
+        `sudo du -h /var --max-depth=1`  
+        ![image](https://github.com/ching11720/git-practice/blob/main/week-09-graph/bonus/disk/var硬碟空間.png)
+    -   /var/log 有問題  
+        `sudo du -h /var/log --max-depth=1`  
+        ![image](https://github.com/ching11720/git-practice/blob/main/week-09-graph/bonus/disk/log硬碟空間.png)
+    -   /var/log/system 有問題  
+        ![image](https://github.com/ching11720/git-practice/blob/main/week-09-graph/bonus/disk/largefile.png)
+-   刪掉大檔案（當然還是要檢查是否需要）  
+    `sudo rm largefile1 ...`
+-   清乾淨的 disk (avail 多了很多可用空間)  
+    ![image](https://github.com/ching11720/git-practice/blob/main/week-09-graph/bonus/disk/清完的disk.png)
+
+### 防火牆
+
+1. 修改 iptables 設定
+    - `cd /etc/iptables`  
+      `sudo vim rules.v4`
+2. 把第 6 行加入 reject 的地方註解掉  
+   ![image](https://github.com/ching11720/git-practice/blob/main/week-09-graph/bonus/iptables設定.png)
+
+### 80 port
+
+1. `sudo lsof -i :80` 發現 PID: 500 佔據了 80 port  
+   ![image](https://github.com/ching11720/git-practice/blob/main/week-09-graph/bonus/80Port/80PortOccupiedPID.png)
+2. `sudo systemctl status srv` 查看這個 process 的狀況  
+   ![image](https://github.com/ching11720/git-practice/blob/main/week-09-graph/bonus/80Port/anotherSRV.png)
+3. 停用這個 server  
+   `sudo systemctl disable srv`
+4. 將 nginx 設為自動啟動  
+   `sudo systemctl enable nginx`
+
+-   如果兩個都 enable 會發生什麼事  
+    我試過 reboot 三次，都是 srv 先搶到 80，為什麼我也不知道（待補）
