@@ -48,7 +48,7 @@
 ## 3. 查看 web server 的 error log
 
 若 nginx 已經正常運行，但`curl localhost`卻出現錯誤訊息  
-![image]()
+![image](https://github.com/ching11720/git-practice/blob/main/week-09-graph/html權限/不能連接server.png)
 
 -   進入 web server error log 的所在地  
     `vim /var/log/myweb/error.log`
